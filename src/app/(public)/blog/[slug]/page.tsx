@@ -233,7 +233,7 @@ export default async function BlogPostPage({
                         placeholder="your@email.com"
                         className="w-full rounded-lg border bg-background px-3 py-2 text-xs outline-none"
                       />
-                      <Button size="sm" className="w-full text-xs" onClick={() => {}}>
+                      <Button size="sm" className="w-full text-xs">
                         Subscribe
                       </Button>
                     </div>
