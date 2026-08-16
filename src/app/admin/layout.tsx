@@ -29,7 +29,6 @@ export default function AdminLayout({
       : false;
 
   const isLoginPage = pathname?.startsWith("/admin/login");
-  const isPageBuilder = pathname?.startsWith("/admin/page-builder");
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -45,11 +44,7 @@ export default function AdminLayout({
   }
 
   return (
-    <div className={isPageBuilder ? "h-screen overflow-hidden" : "flex min-h-svh bg-muted/30"}>
-      {isPageBuilder ? (
-        <div className="h-full w-full">{children}</div>
-      ) : (
-        <>
+    <div className="flex min-h-svh bg-muted/30">
       {/* Desktop sidebar */}
       <div className="hidden lg:block">
         <div className="sticky top-0 h-screen">
@@ -79,8 +74,6 @@ export default function AdminLayout({
           </div>
         </main>
       </div>
-        </>
-      )}
     </div>
   );
 }

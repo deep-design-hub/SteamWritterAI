@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/logo";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useAdminSettingsStore } from "@/store/useAdminSettingsStore";
 
 interface AuthModalProps {
   open: boolean;
@@ -65,8 +66,12 @@ export function AuthModal({ open, onClose, defaultTab = "login" }: AuthModalProp
       router.push(user?.role === "admin" ? "/admin/dashboard" : "/user/dashboard");
       return;
     }
+    if (res.needsVerification) {
+      toast.error("Please verify your email first. Check your inbox.");
+    } else {
+      toast.error(res.error ?? "Login failed.");
+    }
     setLoading(false);
-    toast.error(res.error ?? "Login failed.");
   }
 
   async function onRegister(e: React.FormEvent) {
@@ -76,15 +81,22 @@ export function AuthModal({ open, onClose, defaultTab = "login" }: AuthModalProp
       return;
     }
     setLoading(true);
+    const requireVerification = useAdminSettingsStore.getState().requireEmailVerification;
     const res = await useAuthStore.getState().register({
       firstName: regForm.firstName,
       lastName: regForm.lastName,
       email: regForm.email,
       password: regForm.password,
+      requireVerification,
     });
     setLoading(false);
     if (!res.ok) {
       toast.error(res.error ?? "Registration failed.");
+      return;
+    }
+    if (res.needsVerification) {
+      toast.success("Verification email sent! Please check your inbox.");
+      handleClose();
       return;
     }
     toast.success("Account created. Welcome to SteamWriterAi!");

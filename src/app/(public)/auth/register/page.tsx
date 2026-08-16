@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/logo";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useAdminSettingsStore } from "@/store/useAdminSettingsStore";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -32,15 +33,22 @@ export default function RegisterPage() {
       return;
     }
     setLoading(true);
+    const requireVerification = useAdminSettingsStore.getState().requireEmailVerification;
     const res = await useAuthStore.getState().register({
       firstName: form.firstName,
       lastName: form.lastName,
       email: form.email,
       password: form.password,
+      requireVerification,
     });
     setLoading(false);
     if (!res.ok) {
       toast.error(res.error ?? "Registration failed.");
+      return;
+    }
+    if (res.needsVerification) {
+      toast.success("Verification email sent! Please check your inbox to activate your account.");
+      router.push("/login");
       return;
     }
     toast.success("Account created. Welcome to SteamWriterAi!");

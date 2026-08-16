@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   sendEmail,
   welcomeEmail,
+  verificationEmail,
   passwordResetEmail,
   paymentConfirmationEmail,
 } from "@/lib/email/mailer";
@@ -9,7 +10,7 @@ import {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { type, to, firstName, resetUrl, plan, amount, reference } = body;
+    const { type, to, firstName, verificationUrl, resetUrl, plan, amount, reference } = body;
 
     if (!to || !type) {
       return NextResponse.json({ error: "Missing required fields: to, type" }, { status: 400 });
@@ -19,6 +20,13 @@ export async function POST(req: NextRequest) {
     switch (type) {
       case "welcome":
         emailPayload = welcomeEmail(firstName || "User");
+        emailPayload.to = to;
+        break;
+      case "verification":
+        if (!verificationUrl) {
+          return NextResponse.json({ error: "Missing verificationUrl" }, { status: 400 });
+        }
+        emailPayload = verificationEmail(firstName || "User", verificationUrl);
         emailPayload.to = to;
         break;
       case "password-reset":
@@ -53,7 +61,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     service: "SteamWriterAi Email Service",
-    supportedTypes: ["welcome", "password-reset", "payment-confirmation"],
+    supportedTypes: ["welcome", "verification", "password-reset", "payment-confirmation"],
     smtp: {
       host: process.env.SMTP_HOST || "smtp.gmail.com",
       port: Number(process.env.SMTP_PORT || 465),

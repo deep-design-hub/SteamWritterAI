@@ -132,7 +132,40 @@ export function Topbar() {
   const [authOpen, setAuthOpen] = React.useState(false);
   const [authTab, setAuthTab] = React.useState<"login" | "register">("login");
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
-  const dropdownTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = React.useRef<HTMLElement>(null);
+  const [headerBottom, setHeaderBottom] = React.useState(0);
+  const closeTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  React.useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  React.useEffect(() => {
+    function update() {
+      if (headerRef.current) {
+        setHeaderBottom(headerRef.current.getBoundingClientRect().bottom);
+      }
+    }
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (openDropdown) {
+      const h = headerRef.current?.getBoundingClientRect().bottom ?? 64;
+      setHeaderBottom(h);
+    }
+  }, [openDropdown]);
 
   function openLogin() {
     setAuthTab("login");
@@ -145,14 +178,29 @@ export function Topbar() {
     setMobileOpen(false);
   }
 
-  function handleDropdownEnter(id: string) {
-    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+  function onTriggerEnter(id: string) {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
     setOpenDropdown(id);
   }
 
-  function handleDropdownLeave() {
-    dropdownTimeout.current = setTimeout(() => setOpenDropdown(null), 150);
+  function onTriggerLeave() {
+    closeTimeout.current = setTimeout(() => setOpenDropdown(null), 120);
   }
+
+  function onDropdownEnter() {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+  }
+
+  function onDropdownLeave() {
+    closeTimeout.current = setTimeout(() => setOpenDropdown(null), 120);
+  }
+
+  function closeDropdown() {
+    setOpenDropdown(null);
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+  }
+
+  const activeGroup = navGroups.find((g) => g.id === openDropdown);
 
   return (
     <>
@@ -177,7 +225,7 @@ export function Topbar() {
       </div>
 
       {/* Main header */}
-      <header className="border-border/60 sticky top-0 z-50 border-b bg-background/85 backdrop-blur">
+      <header ref={headerRef} className="border-border/60 sticky top-0 z-50 border-b bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
@@ -193,7 +241,7 @@ export function Topbar() {
             </span>
           </Link>
 
-          {/* Desktop nav — click-based mega dropdown */}
+          {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex">
             <Button asChild variant="ghost" size="sm" className="h-9">
               <Link href="/">Home</Link>
@@ -201,9 +249,8 @@ export function Topbar() {
             {navGroups.map((group) => (
               <div
                 key={group.id}
-                className="relative"
-                onMouseEnter={() => handleDropdownEnter(group.id)}
-                onMouseLeave={handleDropdownLeave}
+                onMouseEnter={() => onTriggerEnter(group.id)}
+                onMouseLeave={onTriggerLeave}
               >
                 <button
                   type="button"
@@ -217,34 +264,6 @@ export function Topbar() {
                   {group.label}
                   <ChevronDown className={`size-3.5 transition-transform ${openDropdown === group.id ? "rotate-180" : ""}`} />
                 </button>
-                {/* Full-width mega dropdown */}
-                {openDropdown === group.id && (
-                  <div className="absolute left-1/2 top-full z-50 mt-2 w-[640px] -translate-x-1/2 rounded-xl border bg-card p-6 shadow-xl">
-                    <div className="grid grid-cols-4 gap-6">
-                      {group.mega.columns.map((col) => (
-                        <div key={col.title}>
-                          <h4 className="text-primary mb-3 border-b pb-2 text-[11px] font-bold uppercase tracking-widest">
-                            {col.title}
-                          </h4>
-                          <ul className="space-y-0.5">
-                            {col.links.map((link) => (
-                              <li key={link.label}>
-                                <Link
-                                  href={link.href}
-                                  onClick={() => setOpenDropdown(null)}
-                                  className="hover:bg-primary/5 hover:text-foreground flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[13px] text-muted-foreground transition-colors hover:pl-3"
-                                >
-                                  <ArrowRight className="text-primary size-3" />
-                                  {link.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
             <Button asChild variant="ghost" size="sm" className="h-9">
@@ -277,32 +296,71 @@ export function Topbar() {
           </div>
         </div>
 
-        {mobileOpen && (
-          <div className="border-t bg-card px-4 py-4 lg:hidden">
-            <div className="flex flex-col gap-1">
-              {mobileLinks.map((link) => (
-                <Button
-                  key={link.href}
-                  asChild
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <Link href={link.href}>{link.label}</Link>
-                </Button>
-              ))}
-              <div className="mt-2 flex gap-2">
-                <Button variant="outline" className="flex-1" onClick={openLogin}>
-                  Sign In
-                </Button>
-                <Button className="flex-1" onClick={openRegister}>
-                  Get Started
-                </Button>
-              </div>
+        {/* Mobile menu */}
+        <div
+          className={`border-t bg-card overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${
+            mobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="flex flex-col gap-0.5 px-4 py-3">
+            {mobileLinks.map((link) => (
+              <Button
+                key={link.href}
+                asChild
+                variant="ghost"
+                className="justify-start h-11 px-3 text-[15px]"
+                onClick={() => setMobileOpen(false)}
+              >
+                <Link href={link.href}>{link.label}</Link>
+              </Button>
+            ))}
+            <div className="mt-3 flex gap-2 border-t border-border pt-3">
+              <Button variant="outline" className="flex-1 h-11" onClick={openLogin}>
+                Sign In
+              </Button>
+              <Button className="flex-1 h-11" onClick={openRegister}>
+                Get Started
+              </Button>
             </div>
           </div>
-        )}
+        </div>
       </header>
+
+      {/* Mega dropdown — fixed to viewport, full width, positioned below header (desktop only) */}
+      {openDropdown && activeGroup && (
+        <div
+          className="fixed left-0 right-0 z-50 border-t-2 border-primary bg-card shadow-xl hidden lg:block"
+          style={{ top: headerBottom }}
+          onMouseEnter={onDropdownEnter}
+          onMouseLeave={onDropdownLeave}
+        >
+          {/* Backdrop overlay */}
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm -z-10" />
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 md:grid-cols-4 lg:px-8">
+            {activeGroup.mega.columns.map((col) => (
+              <div key={col.title}>
+                <h4 className="text-primary mb-4 border-b border-primary/10 pb-2 text-[11px] font-bold uppercase tracking-widest">
+                  {col.title}
+                </h4>
+                <ul className="space-y-1">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        onClick={closeDropdown}
+                        className="hover:bg-primary/5 hover:text-foreground flex items-center gap-2 rounded-md px-3 py-2 text-[13px] text-muted-foreground transition-all hover:pl-4"
+                      >
+                        <ArrowRight className="text-primary size-3" />
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }

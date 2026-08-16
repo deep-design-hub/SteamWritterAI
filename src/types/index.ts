@@ -88,6 +88,9 @@ export interface User {
   email: string;
   passwordHash: string;
   role: "user" | "admin";
+  emailVerified?: boolean;
+  emailVerificationToken?: string;
+  emailVerificationExpires?: string;
   createdAt: string;
 }
 

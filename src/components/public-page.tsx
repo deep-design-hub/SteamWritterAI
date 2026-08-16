@@ -80,30 +80,39 @@ function CtaButtons({
 
 function HeroSection({ section }: { section: PageSection }) {
   return (
-    <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(27,139,44,0.12),transparent),radial-gradient(ellipse_50%_40%_at_80%_80%,rgba(124,58,237,0.08),transparent)]" />
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div className="max-w-3xl text-center">
+    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
+      {/* Background gradients */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(27,139,44,0.12),transparent),radial-gradient(ellipse_50%_40%_at_80%_80%,rgba(124,58,237,0.08),transparent),radial-gradient(ellipse_40%_30%_at_20%_70%,rgba(27,139,44,0.06),transparent)]" />
+      {/* Grid pattern */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:64px_64px] opacity-[0.08] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black,transparent_70%)]" />
+
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        {/* Left: Text */}
+        <div>
           {section.badge && (
-            <Badge variant="secondary" className="mb-5">
-              <span className="bg-primary mr-1 inline-block size-1.5 animate-pulse rounded-full" />
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary">
+              <span className="bg-primary size-1.5 animate-pulse rounded-full" />
               {section.badge}
-            </Badge>
+            </div>
           )}
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            {section.heading}
+          <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+            {section.heading?.includes("Research Operating System") ? (
+              <>Your Academic<br /><span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Research Operating System</span></>
+            ) : (
+              section.heading
+            )}
           </h1>
           {section.subheading && (
-            <p className="text-muted-foreground mt-5 text-lg leading-relaxed">
+            <p className="text-muted-foreground mt-5 max-w-xl text-lg leading-relaxed">
               {section.subheading}
             </p>
           )}
-          <CtaButtons primary={section.primaryCta} secondary={section.secondaryCta} />
+          <CtaButtons primary={section.primaryCta} secondary={section.secondaryCta} align="start" />
           {section.items.length > 0 && (
-            <div className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4 border-t pt-7">
+            <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-t pt-7">
               {section.items.map((item) => (
                 <div key={item.id}>
-                  <div className="text-foreground text-3xl font-extrabold">
+                  <div className="text-3xl font-extrabold">
                     <span className="text-primary">{item.value}</span>
                   </div>
                   <p className="text-muted-foreground text-[13px]">{item.title}</p>
@@ -111,6 +120,47 @@ function HeroSection({ section }: { section: PageSection }) {
               ))}
             </div>
           )}
+        </div>
+
+        {/* Right: Hero Visual Card */}
+        <div className="relative hidden items-center justify-center lg:flex">
+          <div className="w-full max-w-md rounded-2xl border bg-card p-6 shadow-xl">
+            {/* Card header */}
+            <div className="mb-4 flex items-center gap-2">
+              <div className="size-3 rounded-full bg-red-500" />
+              <div className="size-3 rounded-full bg-yellow-500" />
+              <div className="size-3 rounded-full bg-green-500" />
+              <span className="ml-2 text-xs text-muted-foreground">workspace.steamwriterai</span>
+            </div>
+            {/* Fake content lines */}
+            <div className="mb-2 h-3 w-full rounded bg-gradient-to-r from-primary/20 to-purple-500/20" />
+            <div className="mb-2 h-3 w-[85%] rounded bg-muted" />
+            <div className="mb-2 h-3 w-[70%] rounded bg-muted" />
+            <div className="mb-3 h-3 w-[90%] rounded bg-muted" />
+            {/* Tags */}
+            <div className="mb-3 flex gap-2">
+              <span className="rounded bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary">CHAPTER 1</span>
+              <span className="rounded bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary">INTRODUCTION</span>
+              <span className="rounded bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary">IN PROGRESS</span>
+            </div>
+            <div className="mb-2 h-3 w-[45%] rounded bg-muted" />
+            <div className="mb-3 h-3 w-[60%] rounded bg-muted" />
+            {/* Progress */}
+            <div className="mt-4 flex items-center gap-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4 text-green-500"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-muted">
+                <div className="h-full w-[76%] rounded-full bg-green-500" />
+              </div>
+              <span className="text-xs text-muted-foreground">76% complete</span>
+            </div>
+          </div>
+          {/* Floating icons */}
+          <div className="absolute -right-4 top-0 flex size-12 items-center justify-center rounded-xl border bg-card shadow-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5 text-primary"><path d="M12 2l2 7h7l-5 5 2 8-6-4-6 4 2-8-5-5h7z"/></svg>
+          </div>
+          <div className="absolute -left-4 bottom-8 flex size-12 items-center justify-center rounded-xl border bg-card shadow-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5 text-primary"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
         </div>
       </div>
     </section>
@@ -632,22 +682,27 @@ export function PublicPage({ slug }: { slug: string }) {
 
   if (!content) return null;
 
+  const hasHeroSection = content.sections.some((s) => s.type === "hero");
+
   return (
     <div>
-      <section className="pt-16 sm:pt-20">
-        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
-          {content.title && (
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-              {content.title}
-            </h1>
-          )}
-          {content.subtitle && (
-            <p className="text-muted-foreground mx-auto mt-4 max-w-2xl">
-              {content.subtitle}
-            </p>
-          )}
-        </div>
-      </section>
+      {/* Only show the title/subtitle block if there's no hero section (hero already has heading + subheading) */}
+      {!hasHeroSection && (
+        <section className="pt-16 sm:pt-20">
+          <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
+            {content.title && (
+              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+                {content.title}
+              </h1>
+            )}
+            {content.subtitle && (
+              <p className="text-muted-foreground mx-auto mt-4 max-w-2xl">
+                {content.subtitle}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
       {content.sections.map((section) => {
         const Renderer = RENDERERS[section.type];
         if (!Renderer) return null;

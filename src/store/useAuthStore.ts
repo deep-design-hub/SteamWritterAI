@@ -20,11 +20,13 @@ interface AuthState {
     lastName: string;
     email: string;
     password: string;
-  }) => Promise<{ ok: boolean; error?: string }>;
+    requireVerification?: boolean;
+  }) => Promise<{ ok: boolean; error?: string; needsVerification?: boolean }>;
+  verifyEmail: (token: string) => Promise<{ ok: boolean; error?: string }>;
   login: (input: {
     email: string;
     password: string;
-  }) => Promise<{ ok: boolean; error?: string }>;
+  }) => Promise<{ ok: boolean; error?: string; needsVerification?: boolean }>;
   logout: () => void;
   currentUser: () => User | null;
   isAuthenticated: () => boolean;
@@ -38,6 +40,7 @@ const seedAdmin: User = {
   passwordHash:
     "3d210d2b4e1f74bd26e7ae189d5469baa7a2f65c402d99ef28c9b5fba71d7d4e",
   role: "admin",
+  emailVerified: true,
   createdAt: new Date(0).toISOString(),
 };
 
@@ -49,6 +52,7 @@ const seedUser: User = {
   passwordHash:
     "0c05830b6569471e8d8ea565af16d20a0a2dd470246cc413b7db54607f75a5a6",
   role: "user",
+  emailVerified: true,
   createdAt: new Date(0).toISOString(),
 };
 
@@ -58,7 +62,7 @@ export const useAuthStore = create<AuthState>()(
       users: [seedAdmin, seedUser],
       currentUserId: null,
 
-      async register({ firstName, lastName, email, password }) {
+      async register({ firstName, lastName, email, password, requireVerification = false }) {
         const normalized = email.trim().toLowerCase();
         if (!firstName || !lastName || !normalized || password.length < 6) {
           return { ok: false, error: "Please complete all fields (password: 6+ characters)." };
@@ -68,6 +72,39 @@ export const useAuthStore = create<AuthState>()(
           return { ok: false, error: "An account with this email already exists." };
         }
         const passwordHash = await hashPassword(password);
+
+        if (requireVerification) {
+          const token = uid();
+          const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+          const user: User = {
+            id: uid(),
+            firstName: firstName.trim(),
+            lastName: lastName.trim(),
+            email: normalized,
+            passwordHash,
+            role: "user",
+            emailVerified: false,
+            emailVerificationToken: token,
+            emailVerificationExpires: expires,
+            createdAt: new Date().toISOString(),
+          };
+          set({ users: [...users, user] });
+
+          const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://steamwriterai.com";
+          fetch("/api/email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              type: "verification",
+              to: normalized,
+              firstName: firstName.trim(),
+              verificationUrl: `${siteUrl}/verify-email?token=${token}`,
+            }),
+          }).catch(() => {});
+
+          return { ok: true, needsVerification: true };
+        }
+
         const user: User = {
           id: uid(),
           firstName: firstName.trim(),
@@ -75,9 +112,11 @@ export const useAuthStore = create<AuthState>()(
           email: normalized,
           passwordHash,
           role: "user",
+          emailVerified: true,
           createdAt: new Date().toISOString(),
         };
         set({ users: [...users, user], currentUserId: user.id });
+
         fetch("/api/email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -87,6 +126,43 @@ export const useAuthStore = create<AuthState>()(
             firstName: firstName.trim(),
           }),
         }).catch(() => {});
+
+        return { ok: true };
+      },
+
+      async verifyEmail(token) {
+        const users = get().users;
+        const user = users.find(
+          (u) => u.emailVerificationToken === token && u.emailVerificationExpires
+        );
+
+        if (!user) {
+          return { ok: false, error: "Invalid or expired verification link." };
+        }
+
+        if (new Date(user.emailVerificationExpires!) < new Date()) {
+          return { ok: false, error: "This verification link has expired. Please request a new one." };
+        }
+
+        set({
+          users: users.map((u) =>
+            u.id === user.id
+              ? { ...u, emailVerified: true, emailVerificationToken: undefined, emailVerificationExpires: undefined }
+              : u
+          ),
+          currentUserId: user.id,
+        });
+
+        fetch("/api/email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "welcome",
+            to: user.email,
+            firstName: user.firstName,
+          }),
+        }).catch(() => {});
+
         return { ok: true };
       },
 
@@ -98,6 +174,9 @@ export const useAuthStore = create<AuthState>()(
         );
         if (!user) {
           return { ok: false, error: "Invalid email or password." };
+        }
+        if (user.emailVerified === false) {
+          return { ok: false, needsVerification: true, error: "Please verify your email before logging in." };
         }
         set({ currentUserId: user.id });
         return { ok: true };
