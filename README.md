@@ -1,63 +1,113 @@
-<p align="center">
-  <img src="public/logo.png" alt="SteamWriterAi" width="80" />
-</p>
+<div align="center">
 
-<h1 align="center">SteamWriterAi</h1>
+<img src="public/logo.png" alt="SteamWriterAi Logo" width="100" />
 
-<p align="center">
-  <strong>Your Academic Research Operating System</strong><br/>
-  AI-powered research writing platform that generates complete, submission-ready chapters from topic to final defense.
-</p>
+# SteamWriterAi
 
-<p align="center">
-  <a href="https://steamwriterai.com">Live Demo</a> ·
-  <a href="https://steamwriterai.com/pricing">Pricing</a> ·
-  <a href="https://steamwriterai.com/contact">Contact</a>
-</p>
+### Your Academic Research Operating System
+
+AI-powered research writing platform that generates complete, submission-ready chapters from topic to final defense.
+
+[![Live Demo](https://img.shields.io/badge/LIVE-DEMO-1B8B2C?style=for-the-badge&logo=vercel&logoColor=white)](https://steamwriterai.com)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+
+</div>
 
 ---
 
+<br/>
+
 ## About
 
-SteamWriterAi is a full-stack AI research writing platform built for postgraduate students and researchers. It generates structured, academically-rigorous research chapters (1–5), proposals, questionnaires, and references — complete with real citations, data analysis, and mathematical modelling.
+SteamWriterAi is a full-stack AI research writing platform built for postgraduate students and researchers. It generates structured, academically-rigorous research chapters (1-5), proposals, questionnaires, and references -- complete with real citations, data analysis, and mathematical modelling.
 
-**Powered by OpenAI ChatGPT 5.5 and Anthropic Claude Sonnet 5** through an ensemble AI Gateway that routes tasks to the best model automatically.
+Powered by **OpenAI GPT-4o** and **Anthropic Claude Sonnet** through an **Ensemble AI Gateway** that routes tasks to the best model automatically.
+
+<br/>
 
 ## Features
 
-| Module | Description |
-|--------|-------------|
-| **Chapter Generator** | Generate chapters 1–5, proposals, seminars, questionnaires, theses and dissertations |
-| **Journal Discovery** | Find relevant journals and papers from real academic databases |
-| **Citation Engine** | APA 7, MLA, Chicago, Harvard, IEEE, Vancouver citation formatting |
-| **Data Analysis Lab** | Upload datasets, generate tables, charts and statistical interpretations |
-| **Math Modelling Studio** | SIR, SEIR, ODE, PDE, EOQ, Regression with sensitivity analysis |
-| **AI Detection** | Check content against AI detectors before submission |
-| **Plagiarism Check** | Scan for originality and proper attribution |
-| **Corrections Engine** | Handle supervisor corrections and revisions |
-| **Template Library** | Pre-built templates for chapters, proposals and questionnaires |
-| **Export Engine** | Download as DOCX, PDF, TXT, LaTeX and more |
-| **Reference Manager** | Organize and format citations automatically |
-| **AI Gateway** | Ensemble mode — all enabled models work together for the best result |
-| **Humanisation** | Rewrite AI content to pass detection tools |
-| **Custom Branding** | Custom headers, footers and institutional formatting |
+<table>
+<tr>
+<td width="50%">
+
+### AI Writing Engine
+- 14 document types (Chapters 1-5, proposals, theses, questionnaires...)
+- Real APA 7 citations from provided sources
+- British English, formal academic register
+- 1500-3000 word chapters with numbered headings
+- Markdown tables with captions
+- Ensemble AI fallback system
+
+</td>
+<td width="50%">
+
+### Platform Modules
+- Journal Discovery from academic databases
+- Citation Engine (APA, MLA, Chicago, Harvard, IEEE, Vancouver)
+- Data Analysis Lab with charts & statistics
+- Math Modelling (SIR, SEIR, ODE, PDE, EOQ)
+- AI Detection & Plagiarism Checking
+- Corrections Engine for supervisor revisions
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### Export & Templates
+- Download as DOCX, PDF, TXT, LaTeX
+- Pre-built templates for all document types
+- Reference Manager with auto-formatting
+- Humanisation mode to pass AI detection
+- Custom headers, footers & institutional formatting
+
+</td>
+<td width="50%">
+
+### Admin & CMS
+- Visual Page Builder for 13 marketing pages
+- User & Payment management dashboard
+- AI Model enable/disable per provider
+- Mail tester & SMTP configuration
+- Platform analytics & conversion tracking
+- 6-config Settings panel (General, Mail, Security, Config, Cache, SEO)
+
+</td>
+</tr>
+</table>
+
+<br/>
 
 ## Tech Stack
 
-- **Framework:** [Next.js 16](https://nextjs.org) (App Router, Turbopack)
-- **Language:** TypeScript
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com)
-- **State:** [Zustand](https://zustand-demo.pmnd.rs) with localStorage persistence
-- **AI SDK:** [Vercel AI SDK](https://sdk.vercel.ai) — OpenAI + Anthropic adapters
-- **Email:** [Nodemailer](https://nodemailer.com) (Gmail SMTP)
-- **Deployment:** [Netlify](https://netlify.com) with `@netlify/plugin-nextjs`
+<div align="center">
+
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | [Next.js 16](https://nextjs.org) -- App Router, Turbopack |
+| **Language** | [TypeScript 5](https://typescriptlang.org) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com) |
+| **Animations** | [Framer Motion 13](https://motion.dev) |
+| **State** | [Zustand 5](https://zustand-demo.pmnd.rs) with localStorage persistence |
+| **AI SDK** | [Vercel AI SDK 7](https://sdk.vercel.ai) -- OpenAI + Anthropic adapters |
+| **Email** | [Nodemailer 9](https://nodemailer.com) via Gmail SMTP |
+| **Icons** | [Lucide React](https://lucide.dev) + Custom Icon System |
+| **Payments** | Paystack, OPay, Moniepoint |
+| **Deployment** | [Netlify](https://netlify.com) / [Vercel](https://vercel.com) |
+
+</div>
+
+<br/>
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm, yarn, or pnpm
+- **Node.js 18+**
+- **npm**, **yarn**, or **pnpm**
 - At least one AI provider API key (OpenAI or Anthropic)
 
 ### Installation
@@ -66,36 +116,38 @@ SteamWriterAi is a full-stack AI research writing platform built for postgraduat
 git clone https://github.com/deep-design-hub/SteamWritterAI.git
 cd SteamWritterAI
 npm install
+cp .env.example .env.local
 ```
 
 ### Environment Variables
 
-Copy `.env.example` to `.env.local` and fill in your keys:
-
-```bash
-cp .env.example .env.local
-```
+Fill in your keys in `.env.local`:
 
 ```env
-# AI — Ensemble mode uses all enabled providers together
-AI_PROVIDER=ensemble
+# ─── AI Providers ──────────────────────────────────────────────────────
+AI_PROVIDER=ensemble              # "ensemble" | "openai" | "anthropic"
 
-# Anthropic (Claude)
-ANTHROPIC_API_KEY=sk-ant-...
+ANTHROPIC_API_KEY=sk-ant-...      # Anthropic Claude
 ANTHROPIC_MODEL=claude-sonnet-4-5
 
-# OpenAI (ChatGPT)
-OPENAI_API_KEY=sk-...
+OPENAI_API_KEY=sk-...             # OpenAI ChatGPT
 OPENAI_MODEL=gpt-4o
 
-# SMTP — Gmail App Password required
+# ─── SMTP / Email ──────────────────────────────────────────────────────
 SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
+SMTP_PORT=465
 SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
+SMTP_PASS=your-app-password       # Gmail App Password (16 chars)
 SMTP_FROM="SteamWriterAi <your-email@gmail.com>"
 
-# Site
+# ─── Payments ──────────────────────────────────────────────────────────
+NEXT_PUBLIC_OPAY_ACCOUNT_NAME=Your Name
+NEXT_PUBLIC_OPAY_ACCOUNT_NUMBER=1234567890
+NEXT_PUBLIC_MONIEPOINT_ACCOUNT_NAME=Your Name
+NEXT_PUBLIC_MONIEPOINT_ACCOUNT_NUMBER=1234567890
+NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=pk_live_...
+
+# ─── Site URLs ─────────────────────────────────────────────────────────
 NEXT_PUBLIC_APP_URL=https://your-domain.com
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
@@ -106,136 +158,155 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000)
 
-### Production Build
+### Production
 
 ```bash
-npm run build
-npm run start
+npm run build     # Build + auto-generate sitemap
+npm run start     # Start production server
 ```
+
+<br/>
 
 ## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── (public)/          # Public marketing pages (layout with Topbar + Footer)
-│   │   ├── page.tsx       # Homepage (builder-driven)
-│   │   ├── features/      # Feature pages
-│   │   ├── pricing/
-│   │   ├── blog/          # Blog listing + [slug] detail
-│   │   ├── contact/
-│   │   ├── faq/
-│   │   ├── modules/
-│   │   ├── how-it-works/
-│   │   ├── corrections/
-│   │   ├── ai-gateway/
-│   │   ├── terms/
-│   │   ├── refund/
-│   │   ├── privacy/
-│   │   └── auth/          # Login, register, forgot-password
-│   ├── admin/             # Admin panel (sidebar + header layout)
-│   │   ├── dashboard/     # Admin dashboard with metrics
-│   │   ├── users/         # User management (all, verified, suspended)
-│   │   ├── payments/      # Payment management (verify/reject)
-│   │   ├── models/        # AI model enable/disable
-│   │   ├── mail/          # Mail tester
-│   │   ├── page-builder/  # Visual page builder
-│   │   ├── analytics/     # Platform analytics
-│   │   └── settings/      # Platform settings
-│   ├── user/              # User dashboard (sidebar + header layout)
-│   │   ├── dashboard/
-│   │   ├── projects/      # Project list, new, [id]
-│   │   ├── journals/
-│   │   ├── templates/
-│   │   ├── settings/
-│   │   └── billing/
+│   ├── (public)/             # 13 marketing pages + auth pages
+│   │   ├── page.tsx          # Homepage (CMS-driven)
+│   │   ├── features/         # Feature showcase
+│   │   ├── pricing/          # Pricing tiers
+│   │   ├── blog/             # Blog listing + [slug] detail
+│   │   ├── contact/          # Contact form
+│   │   ├── auth/             # Login, register, forgot-password
+│   │   └── ...               # FAQ, modules, how-it-works, terms, etc.
+│   │
+│   ├── admin/                # Admin panel (role-protected)
+│   │   ├── dashboard/        # Metrics overview
+│   │   ├── users/            # User management
+│   │   ├── payments/         # Payment verification
+│   │   ├── models/           # AI provider toggles
+│   │   ├── page-builder/     # Visual CMS editor
+│   │   ├── mail/             # Email tester
+│   │   ├── analytics/        # Platform analytics
+│   │   └── settings/         # General, Mail, Security, Config, Cache, SEO
+│   │
+│   ├── user/                 # User dashboard (session-protected)
+│   │   ├── dashboard/        # Overview
+│   │   ├── projects/         # List, create, workspace [id]
+│   │   ├── journals/         # Journal discovery
+│   │   ├── templates/        # Writing templates
+│   │   ├── settings/         # Profile settings
+│   │   └── billing/          # Payment history
+│   │
 │   └── api/
-│       ├── agent/         # AI agent chat endpoint
-│       └── email/         # SMTP email endpoint
+│       ├── agent/            # AI agent chat (streaming)
+│       └── email/            # SMTP email sender
+│
 ├── components/
-│   ├── admin/             # AdminSidebar, AdminHeader, PageBuilder
-│   ├── agent/             # ProjectWorkspace, chat UI
-│   ├── auth/              # AuthModal (login/register)
-│   ├── landing/           # Topbar, Footer
-│   ├── support/           # ChatWidget (floating support bot)
-│   ├── ui/                # shadcn/ui components + Icon system
-│   └── user/              # UserHeader, Sidebar
+│   ├── admin/                # Admin sidebar, header, page builder
+│   ├── agent/                # AI chat workspace
+│   ├── landing/              # Topbar, Footer
+│   ├── support/              # Floating support chat widget
+│   ├── ui/                   # 20+ shadcn/ui primitives
+│   └── user/                 # User sidebar, header
+│
 ├── lib/
-│   ├── agent/             # AI agent (prompts, tools, types, ensemble)
-│   ├── email/             # Nodemailer SMTP transport
-│   ├── page-defaults.ts   # Default page content (13 pages + 6 blog posts)
-│   └── storage.ts         # localStorage + SHA-256 hashing
-├── store/
-│   ├── useAuthStore.ts    # Authentication (users, sessions)
-│   ├── useProjectStore.ts # Projects & chapters
-│   ├── usePaymentStore.ts # Payment orders
-│   ├── useModelStore.ts   # AI model configuration
-│   └── useContentStore.ts # CMS content overrides
-└── types/                 # TypeScript type definitions
+│   ├── agent/                # AI core (prompts, tools, types, ensemble)
+│   ├── email/                # Nodemailer + 4 email templates
+│   ├── page-defaults.ts      # Default content for 13 pages + 6 blog posts
+│   ├── payments.ts           # Plan config, gateway configs, Paystack loader
+│   └── storage.ts            # localStorage + SHA-256 hashing
+│
+├── store/                    # 6 Zustand stores (persisted to localStorage)
+│   ├── useAuthStore.ts       # Users, sessions, login/register/verify
+│   ├── useProjectStore.ts    # Projects, chapters, references, chat
+│   ├── usePaymentStore.ts    # Payment orders & verification
+│   ├── useModelStore.ts      # AI model enable/disable
+│   ├── useContentStore.ts    # CMS page content overrides
+│   └── useAdminSettingsStore.ts  # Platform settings
+│
+└── types/                    # TypeScript type definitions
 ```
+
+<br/>
+
+## AI Agent Tools
+
+The AI agent comes equipped with built-in tools:
+
+| Tool | Description |
+|------|-------------|
+| **APA 7 Formatter** | Structures references in APA 7th edition format |
+| **Citation Validator** | Checks in-text citations match the reference list |
+| **Word Counter** | Enforces 1500-3000 words per chapter |
+| **Document Formatter** | Applies numbered headings, tables, and academic structure |
+
+### Supported Document Types
+
+| # | Type | Description |
+|---|------|-------------|
+| 1 | Chapter 1 | Introduction |
+| 2 | Chapter 2 | Literature Review |
+| 3 | Chapter 3 | Research Methodology |
+| 4 | Chapter 4 | Data Analysis & Findings |
+| 5 | Chapter 5 | Summary, Conclusion & Recommendations |
+| 6 | Research Proposal | Full proposal document |
+| 7 | Seminar Report | Seminar presentation write-up |
+| 8 | Research Synopsis | Condensed research overview |
+| 9 | Thesis | Complete thesis document |
+| 10 | Dissertation | Full dissertation |
+| 11 | Questionnaire | Research instrument design |
+| 12 | References | Citation list & bibliography |
+| 13 | Outline | Full project outline |
+| 14 | Presentation | Slides outline |
+
+<br/>
 
 ## Default Credentials
 
+> Change these before deploying to production.
+
 | Role | Email | Password |
-|------|-------|----------|
+|:-----|-------|----------|
 | Admin | `admin@steamwriterai.app` | `admin123` |
 | User | `abubakarmusa09876@gmail.com` | `0000` |
 
-> Change these before deploying to production.
+<br/>
 
-## Admin Panel
+## Deployment
 
-The admin panel (`/admin`) provides:
-
-- **Dashboard** — User count, project count, revenue overview
-- **User Management** — View all users, filter by status
-- **Payment Management** — Verify or reject pending payments
-- **AI Models** — Enable/disable OpenAI and Anthropic providers
-- **Page Builder** — Visual editor for all marketing pages
-- **Mail Tester** — Send test emails to verify SMTP configuration
-- **Analytics** — Platform metrics and conversion rates
-- **Settings** — SMTP, site config, security info
-
-## AI Ensemble Mode
-
-When multiple AI providers are enabled, SteamWriterAi runs in **ensemble mode**:
-
-1. Every generation request is sent to all enabled models simultaneously
-2. Each model produces its own complete response
-3. The system selects the best output based on completeness, accuracy, and structure
-4. If one model fails, the system falls back to whichever succeeded
-
-Enable/disable models from **Admin → AI Models**.
-
-## Deployment (Netlify)
+### Netlify
 
 1. Push to GitHub
-2. Connect repository in Netlify
-3. Set build command: `npm run build`
-4. Set publish directory: `.next`
+2. Connect repository in [Netlify](https://netlify.com)
+3. Build command: `npm run build`
+4. Publish directory: `.next`
 5. Add `@netlify/plugin-nextjs` plugin
-6. Configure environment variables in Netlify dashboard
+6. Configure environment variables
 7. Deploy
 
-## SMTP Configuration
+### Vercel
 
-SteamWriterAi uses Gmail SMTP for transactional emails:
+1. Push to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Environment variables are auto-detected from `.env.example`
+4. Deploy
 
-- **Welcome emails** — sent automatically on user registration
-- **Password reset** — via `/api/email` with type `password-reset`
-- **Payment confirmation** — via `/api/email` with type `payment-confirmation`
-- **Test emails** — via Admin → Mail Tester
-
-Generate a Gmail App Password at [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
+<br/>
 
 ## License
 
 Proprietary. All rights reserved.
 
+<br/>
+
 ---
 
-<p align="center">
-  Built with care by <a href="https://github.com/deep-design-hub">Deep Design Hub</a>
-</p>
+<div align="center">
+
+Built with care by **[Deep Design Hub](https://github.com/deep-design-hub)**
+
+</div>
