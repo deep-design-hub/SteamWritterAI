@@ -390,117 +390,7 @@ export function createBlock(type: BlockType, overrides?: Record<string, unknown>
 export const DEFAULT_PAGES: Pages = {
   home: {
     name: "Home",
-    blocks: [
-      { id: "h1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "STEAMWRITERAI / 2026", title: "Your Academic Research<br>Operating System", text: "Generate complete, submission-ready chapters from topic to final defense. Powered by ChatGPT 5.5 and Claude Sonnet 5.", btn: "Create Free Account", btnStyle: "solid", btnBg: "#182033", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "h2", type: "stats", props: { items: [{ value: "5", label: "Chapter Types" }, { value: "14", label: "Core Modules" }, { value: "6", label: "Citation Styles" }, { value: "8", label: "Export Formats" }], background: "#f7f8fc" } },
-      { id: "h3", type: "collection", props: { title: "From Topic to Submission in Four Steps", items: ["Enter Topic", "Generate Chapters", "Analyse & Model", "Export & Submit"], colors: ["linear-gradient(135deg,#f3d9b8,#e0b078)", "linear-gradient(135deg,#c9d8e8,#8fb2cf)", "linear-gradient(135deg,#d9e8e0,#9fc0ae)", "linear-gradient(135deg,#f5d9e2,#e79fbb)"], background: "#ffffff" } },
-      { id: "h4", type: "newsletter", props: { title: "Ready to write?", text: "Create a free account and generate your first chapter in minutes. No credit card required.", btn: "Get Started Free", background: "#6d5dfc" } },
-      { id: "h5", type: "footer", props: { title: "SteamWriterAi", desc: "Your Academic Research Operating System.", links: ["Features", "Pricing", "Blog", "Contact"], socials: ["Twitter", "LinkedIn", "GitHub"], bg: "#182033" } },
-    ],
-  },
-  features: {
-    name: "Features",
-    blocks: [
-      { id: "f1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "FEATURES", title: "Every Tool You Need<br>to Finish Your Research", text: "SteamWriterAi combines fourteen integrated modules into one powerful workspace. From chapter generation to final export.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "f2", type: "collection", props: { title: "Writing & Content", items: ["Chapter Generator", "Supervisor Corrections", "Journal Discovery", "Citation Engine"], colors: ["linear-gradient(135deg,#f3d9b8,#e0b078)", "linear-gradient(135deg,#c9d8e8,#8fb2cf)", "linear-gradient(135deg,#d9e8e0,#9fc0ae)", "linear-gradient(135deg,#f5d9e2,#e79fbb)"], background: "#ffffff" } },
-      { id: "f3", type: "collection", props: { title: "Analysis & Modelling", items: ["Data Analysis Lab", "Math Modelling", "Template Library", "Export Engine"], colors: ["linear-gradient(135deg,#b6acff,#6d5dfc)", "linear-gradient(135deg,#f8dd73,#eebf4a)", "linear-gradient(135deg,#c9d8e8,#8fb2cf)", "linear-gradient(135deg,#d9e8e0,#9fc0ae)"], background: "#f7f8fc" } },
-      { id: "f4", type: "collection", props: { title: "Quality & Assurance", items: ["AI Humanisation", "AI Detection Check", "Plagiarism Check", "AI Gateway"], colors: ["linear-gradient(135deg,#beefc6,#6bc49a)", "linear-gradient(135deg,#f3d9b8,#e0b078)", "linear-gradient(135deg,#f5d9e2,#e79fbb)", "linear-gradient(135deg,#b6acff,#6d5dfc)"], background: "#ffffff" } },
-      { id: "f5", type: "newsletter", props: { title: "Ready to try these tools?", text: "Create a free account and explore all fourteen modules.", btn: "Create free account", background: "#6d5dfc" } },
-    ],
-  },
-  modules: {
-    name: "Modules",
-    blocks: [
-      { id: "m1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "MODULES", title: "The Complete<br>Research Toolkit", text: "Fourteen integrated modules working together to take your research from idea to submission.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "m2", type: "products", props: { title: "All 14 Modules", align: "left", cols: "3", count: 14, showPrice: false, showStock: false, background: "#ffffff" } },
-      { id: "m3", type: "newsletter", props: { title: "One workspace. All modules.", text: "Start with a free account and upgrade when you're ready.", btn: "See plans", background: "#6d5dfc" } },
-    ],
-  },
-  pricing: {
-    name: "Pricing",
-    blocks: [
-      { id: "pr1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "PRICING", title: "Choose Your Plan", text: "One-time payment. Lifetime access. No recurring subscriptions.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "pr2", type: "stats", props: { items: [{ value: "₦2k", label: "Basic" }, { value: "₦5k", label: "Standard" }, { value: "₦10k", label: "Premium" }, { value: "Custom", label: "Institutional" }], background: "#ffffff" } },
-      { id: "pr3", type: "faq", props: { title: "Pricing FAQ", items: [{ q: "Is it a subscription?", a: "No. One-time payment, lifetime access." }, { q: "What payment methods?", a: "OPay, Moniepoint, Paystack and bank transfer." }, { q: "Can I upgrade later?", a: "Yes. Pay the difference between plans." }], background: "#f7f8fc" } },
-      { id: "pr4", type: "banner", props: { text: "7-Day Satisfaction Guarantee — full refund if you're not happy.", bg: "#beefc6", fg: "#19322a" } },
-    ],
-  },
-  "how-it-works": {
-    name: "How It Works",
-    blocks: [
-      { id: "hw1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "HOW IT WORKS", title: "From Topic to Submission<br>in Four Steps", text: "SteamWriterAi removes the blank-page problem. Enter your topic and let the AI handle the rest.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "hw2", type: "collection", props: { title: "The Four Steps", items: ["Enter Topic", "Generate Chapters", "Analyse & Model", "Export & Submit"], colors: ["linear-gradient(135deg,#f3d9b8,#e0b078)", "linear-gradient(135deg,#c9d8e8,#8fb2cf)", "linear-gradient(135deg,#d9e8e0,#9fc0ae)", "linear-gradient(135deg,#f5d9e2,#e79fbb)"], background: "#ffffff" } },
-      { id: "hw3", type: "newsletter", props: { title: "Start your first chapter", text: "Create a free account and see how it works.", btn: "Create free account", background: "#6d5dfc" } },
-    ],
-  },
-  "ai-gateway": {
-    name: "AI Gateway",
-    blocks: [
-      { id: "ag1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "AI GATEWAY", title: "The AI Gateway Behind<br>Every Chapter", text: "SteamWriterAi routes each research task to the strongest model available. OpenAI ChatGPT 5.5 and Anthropic Claude Sonnet 5.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "ag2", type: "collection", props: { title: "Two Flagship Models", items: ["ChatGPT 5.5", "Claude Sonnet 5"], colors: ["linear-gradient(135deg,#b6acff,#6d5dfc)", "linear-gradient(135deg,#f3d9b8,#e0b078)"], background: "#ffffff" } },
-      { id: "ag3", type: "newsletter", props: { title: "Write with the best models", text: "Start writing today with the most advanced AI models.", btn: "Start writing", background: "#6d5dfc" } },
-    ],
-  },
-  corrections: {
-    name: "Corrections",
-    blocks: [
-      { id: "cr1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "CORRECTIONS", title: "Never Fight With<br>Red Pen Marks Again", text: "Upload your supervisor's feedback and SteamWriterAi applies every correction automatically.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "cr2", type: "collection", props: { title: "How It Works", items: ["Upload Feedback", "AI Applies Changes", "Review & Ask", "Track Versions"], colors: ["linear-gradient(135deg,#f3d9b8,#e0b078)", "linear-gradient(135deg,#c9d8e8,#8fb2cf)", "linear-gradient(135deg,#d9e8e0,#9fc0ae)", "linear-gradient(135deg,#f5d9e2,#e79fbb)"], background: "#ffffff" } },
-      { id: "cr3", type: "newsletter", props: { title: "Focus on defending, not decoding", text: "Get started with a free account.", btn: "Get started", background: "#6d5dfc" } },
-    ],
-  },
-  faq: {
-    name: "FAQ",
-    blocks: [
-      { id: "fq1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "FAQ", title: "Frequently Asked<br>Questions", text: "Everything you need to know about SteamWriterAi.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "fq2", type: "faq", props: { title: "Getting Started", items: [{ q: "What is SteamWriterAi?", a: "An AI-powered academic research platform that generates complete, submission-ready chapters from your topic." }, { q: "Do I need technical skills?", a: "No. Just enter your topic and click generate." }, { q: "Is there a free plan?", a: "Yes. Create a free account to try the platform." }], background: "#ffffff" } },
-      { id: "fq3", type: "faq", props: { title: "Payments & Plans", items: [{ q: "Is it a subscription?", a: "No. One-time payment, lifetime access." }, { q: "What payment methods?", a: "OPay, Moniepoint, Paystack and bank transfer." }, { q: "Can I upgrade later?", a: "Yes. Pay the difference between plans." }], background: "#f7f8fc" } },
-      { id: "fq4", type: "faq", props: { title: "The AI Agent", items: [{ q: "Does it generate fake references?", a: "No. The citation engine uses real, verifiable sources." }, { q: "Will it pass AI detection?", a: "Yes. The humanisation layer reduces AI detection scores." }, { q: "Which models do you use?", a: "OpenAI ChatGPT 5.5 and Anthropic Claude Sonnet 5." }], background: "#ffffff" } },
-      { id: "fq5", type: "newsletter", props: { title: "Still have questions?", text: "Contact our support team or get started right away.", btn: "Contact support", background: "#6d5dfc" } },
-    ],
-  },
-  contact: {
-    name: "Contact",
-    blocks: [
-      { id: "ct1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "CONTACT", title: "We're Here to Help", text: "Questions about a plan, a payment or your account? We usually reply within a day.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "ct2", type: "contact", props: { title: "Send us a message", text: "Fill out the form and we'll get back to you within 24 hours.", btn: "Send message", background: "#ffffff" } },
-      { id: "ct3", type: "banner", props: { text: "Phone: +234 905 644 4277 | Email: hello@steamwriterai.com | Lagos, Nigeria", bg: "#f7f8fc", fg: "#182033" } },
-    ],
-  },
-  blog: {
-    name: "Blog",
-    blocks: [
-      { id: "bl1", type: "hero", props: { ...cloneDefaults("hero"), eyebrow: "BLOG", title: "The SteamWriterAi<br>Research Blog", text: "Practical, no-fluff guides for researchers. Learn how to write better chapters, cite properly, and defend confidently.", align: "center", bg: "#f3efff", fg: "#182033" } },
-      { id: "bl2", type: "gallery", props: { items: [], cols: "3", colors: ["linear-gradient(135deg,#f3d9b8,#e0b078)", "linear-gradient(135deg,#c9d8e8,#8fb2cf)", "linear-gradient(135deg,#d9e8e0,#9fc0ae)", "linear-gradient(135deg,#f5d9e2,#e79fbb)", "linear-gradient(135deg,#f8dd73,#eebf4a)", "linear-gradient(135deg,#b6acff,#6d5dfc)"] } },
-      { id: "bl3", type: "newsletter", props: { title: "Want more guides like these?", text: "Create a free account and start writing with SteamWriterAi.", btn: "Start writing", background: "#6d5dfc" } },
-    ],
-  },
-  privacy: {
-    name: "Privacy Policy",
-    blocks: [
-      { id: "pv1", type: "heading", props: { ...cloneDefaults("heading"), text: "Privacy Policy", align: "center", font: 32 } },
-      { id: "pv2", type: "text", props: { ...cloneDefaults("text"), text: "Last updated: August 2026. This Privacy Policy describes how SteamWriterAi collects, uses, and protects your personal information.", align: "center" } },
-      { id: "pv3", type: "text", props: { text: "We collect your name, email address, and payment information when you create an account. Your research content is processed by AI models and is never shared with third parties. We use cookies to improve your experience.", align: "left", color: "#5f687b", font: 11 } },
-      { id: "pv4", type: "text", props: { text: "For questions about this policy, contact hello@steamwriterai.com.", align: "left", color: "#5f687b", font: 11 } },
-    ],
-  },
-  terms: {
-    name: "Terms of Service",
-    blocks: [
-      { id: "ts1", type: "heading", props: { ...cloneDefaults("heading"), text: "Terms of Service", align: "center", font: 32 } },
-      { id: "ts2", type: "text", props: { ...cloneDefaults("text"), text: "Last updated: August 2026. By using SteamWriterAi, you agree to these terms.", align: "center" } },
-      { id: "ts3", type: "text", props: { text: "You must be 18+ to use SteamWriterAi. Payments are non-refundable after the 7-day window. You agree not to use the platform for academic dishonesty. All content generated is your responsibility to review and verify.", align: "left", color: "#5f687b", font: 11 } },
-      { id: "ts4", type: "text", props: { text: "For questions about these terms, contact hello@steamwriterai.com.", align: "left", color: "#5f687b", font: 11 } },
-    ],
-  },
-  refund: {
-    name: "Refund Policy",
-    blocks: [
-      { id: "rf1", type: "heading", props: { ...cloneDefaults("heading"), text: "Refund Policy", align: "center", font: 32 } },
-      { id: "rf2", type: "text", props: { ...cloneDefaults("text"), text: "We stand behind SteamWriterAi with a 7-day satisfaction guarantee.", align: "center" } },
-      { id: "rf3", type: "faq", props: { title: "7-Day Satisfaction Guarantee", items: [{ q: "Within 7 days of purchase", a: "Contact us within 7 days of your purchase for a full refund." }, { q: "Fewer than 3 chapters generated", a: "Refund applies if you've generated fewer than 3 chapters." }, { q: "No policy violation", a: "You haven't violated our terms of service." }, { q: "No chargeback filed", a: "No chargeback or dispute has been filed with your payment provider." }], background: "#ffffff" } },
-      { id: "rf4", type: "text", props: { text: "To request a refund, email hello@steamwriterai.com with your account details. We'll verify and process your refund within 3-5 business days.", align: "center", color: "#5f687b", font: 11 } },
-    ],
+    blocks: [],
   },
 };
 
@@ -534,17 +424,5 @@ export const TEMPLATES: Record<string, { name: string; blocks: Block[] }> = {
 };
 
 export const PAGE_LIST: Array<{ slug: string; name: string; route: string; description: string; sectionCount: number }> = [
-  { slug: "home", name: "Home", route: "/", description: "Landing page with hero, stats, steps, CTA and footer.", sectionCount: 5 },
-  { slug: "features", name: "Features", route: "/features", description: "Module categories, writing tools, analysis tools and quality assurance.", sectionCount: 5 },
-  { slug: "modules", name: "Modules", route: "/modules", description: "Complete toolkit listing all 14 integrated modules.", sectionCount: 3 },
-  { slug: "pricing", name: "Pricing", route: "/pricing", description: "Plans (₦2k–₦10k), comparison table, FAQ and guarantee banner.", sectionCount: 4 },
-  { slug: "how-it-works", name: "How It Works", route: "/how-it-works", description: "Four-step process from topic to submission with pipeline overview.", sectionCount: 3 },
-  { slug: "ai-gateway", name: "AI Gateway", route: "/ai-gateway", description: "ChatGPT 5.5 and Claude Sonnet 5 routing and quality pipeline.", sectionCount: 3 },
-  { slug: "corrections", name: "Corrections", route: "/corrections", description: "Supervisor feedback upload and automatic AI correction module.", sectionCount: 3 },
-  { slug: "faq", name: "FAQ", route: "/faq", description: "15 frequently asked questions across 3 categories.", sectionCount: 5 },
-  { slug: "contact", name: "Contact", route: "/contact", description: "Contact form, phone, email and office location details.", sectionCount: 3 },
-  { slug: "blog", name: "Blog", route: "/blog", description: "Research guides and articles — 6 published posts.", sectionCount: 3 },
-  { slug: "privacy", name: "Privacy Policy", route: "/privacy", description: "Data collection, AI processing, payments and retention policies.", sectionCount: 4 },
-  { slug: "terms", name: "Terms of Service", route: "/terms", description: "Acceptable use, academic integrity, IP and liability terms.", sectionCount: 4 },
-  { slug: "refund", name: "Refund Policy", route: "/refund", description: "7-day satisfaction guarantee conditions and refund process.", sectionCount: 4 },
+  { slug: "home", name: "Home", route: "/", description: "Landing page with header, footer and floating chatbot.", sectionCount: 0 },
 ];

@@ -50,12 +50,12 @@ export function Canvas() {
             border: "1px solid #e5e7eb",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 16, color: "#182033" }}>deepdesign</span>
+          <span style={{ fontWeight: 800, fontSize: 16, color: "#182033" }}>SteamWriterAi</span>
           <div style={{ display: "flex", gap: 16, fontSize: 12, color: "#64748b" }}>
-            <span>Shop</span>
-            <span>About</span>
+            <span>Features</span>
+            <span>Pricing</span>
+            <span>Blog</span>
             <span>Contact</span>
-            <span>🛒</span>
           </div>
         </div>
 

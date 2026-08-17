@@ -266,7 +266,7 @@ export function PageBuilder() {
             }}
             className="rounded bg-background px-2 py-0.5 text-[10px] font-medium text-muted-foreground border border-border hover:border-primary/40 hover:text-foreground transition-colors"
           >
-            {key === "newseason" ? "New Season" : key === "minimal" ? "Minimal" : "Sale"}
+            {key === "academic" ? "Academic" : key === "minimal" ? "Minimal" : "Promotional"}
           </button>
         ))}
       </div>
